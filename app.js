@@ -13,7 +13,7 @@ var posts = require('./routes/home/posts')
 var admin = require('./routes/admin/admin')
 var cats = require('./routes/admin/cats')
 var article = require('./routes/admin/posts')
-
+var tags = require('./routes/admin/tags')
 
 var app = express();
 
@@ -54,6 +54,9 @@ app.use('/admin/cats',cats)
 //实现后台文章管路由
 app.use('/admin/posts',checkLogin)
 app.use('/admin/posts',article)
+//后台标签的路由
+app.use('/admin/tags',checkLogin)
+app.use('/admin/tags',tags)
 
 //后台用户登录路由
 app.use('/admin/users',users)

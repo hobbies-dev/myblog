@@ -59,7 +59,7 @@ router.post('/add',(req,res,next) => {
         //连接成功后，db就是myblog数据库
         const db = client.db('myblog');
         //获取cats集合
-        var cl =db.collection('cats')
+        var cl = db.collection('cats')
         //将获取的表单数据添加到数据库的集合中
         cl.insert({title,sort},(err,result) => {
             if(err){
