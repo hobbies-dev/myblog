@@ -6,7 +6,7 @@ var router = express.Router();
 //引入mongodb驱动
 var mongoClient = require('mongodb').MongoClient
 // mongodb协议
-const DB_STR = 'mongodb://localhost:27017/myblog'
+const DB_STR = 'mongodb://localhost:27017/blogdb'
 
 //通过objectId把字符串转化成ObjectId类型的id
 var ObjectId = require('mongodb').ObjectId;
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
             res.send(err)
             return;
         }
-        var db = client.db('myblog')
+        var db = client.db('blogdb')
         var cl = db.collection('cats')
         cl.find().toArray((err,docs) => {
             if(err){
@@ -57,7 +57,7 @@ router.post('/add',(req,res,next) => {
             return;
         }
         //连接成功后，db就是myblog数据库
-        const db = client.db('myblog');
+        const db = client.db('blogdb');
         //获取cats集合
         var cl = db.collection('cats')
         //将获取的表单数据添加到数据库的集合中
@@ -82,7 +82,7 @@ router.get('/edit', function(req, res, next) {
             res.send(err)
             return;
         }
-        var db= client.db('myblog')
+        var db= client.db('blogdb')
         var cl = db.collection('cats')
         cl.find({_id:ObjectId(id)}).toArray((err,docs) => {
             "use strict";
@@ -108,7 +108,7 @@ router.post('/edit',(req,res,next) => {
             res.send(err)
             return;
         }
-        var db = client.db('myblog')
+        var db = client.db('blogdb')
         var cl = db.collection('cats')
         cl.update({_id:ObjectId(id)},{$set:{title,sort}},(err,result) => {
             if(err){
@@ -131,7 +131,7 @@ router.get('/delete', function(req, res) {  //这里不能使用post请求
             res.send(err)
             return;
         }
-        var db = client.db('myblog')
+        var db = client.db('blogdb')
         var cl = db.collection('cats')
         cl.remove({_id:ObjectId(id)},(err,result) => {
             if(err){

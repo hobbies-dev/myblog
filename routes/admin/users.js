@@ -3,7 +3,7 @@ var router = express.Router();
 //引入mongodb驱动
 var mongoClient = require('mongodb').MongoClient
 // mongodb协议
-const DB_STR = 'mongodb://localhost:27017/myblog'
+const DB_STR = 'mongodb://localhost:27017/bolgdb'
 
 //通过objectId把字符串转化成ObjectId类型的id
 var ObjectId = require('mongodb').ObjectId;
@@ -27,7 +27,7 @@ router.post('/signin',(req,res) => {
         res.send(err)
           return;
       }
-      var db = client.db('myblog');
+      var db = client.db('bolgdb');
       var cl = db.collection('users');
       cl.find({username,pwd}).toArray((err,docs) => {
         if(err){

@@ -3,7 +3,7 @@ var router = express.Router();
 //引入mongodb驱动
 var mongoClient = require('mongodb').MongoClient
 // mongodb协议
-const DB_STR = 'mongodb://localhost:27017/myblog'
+const DB_STR = 'mongodb://localhost:27017/bolgdb'
 
 
 /* GET home page. */
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         return;
     }
     //获取文章集合posts
-    var db = client.db('myblog');
+    var db = client.db('bolgdb');
     var cl = db.collection('posts');
     cl.find().toArray((err,docs) => {
       if(err){
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
         return;
       }
         //同时获取分类的数据
-        var db = client.db('myblog');
+        var db = client.db('bolgdb');
         var cl1 = db.collection('cats');
         cl1.find().toArray((err,result) => {
           if(err){
