@@ -3,7 +3,7 @@ var router = express.Router();
 //引入mongodb驱动
 var mongoClient = require('mongodb').MongoClient
 // mongodb协议
-const DB_STR = 'mongodb://localhost:27017/bolgdb'
+const DB_STR = 'mongodb://localhost/bolgdb'
 
 
 /* GET home page. */
